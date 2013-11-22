@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+ <html>
+
+	 <head>
+
+
+	 	<link rel="stylesheet" type="text/css" href="generalStyle.css">
+		<script type="text/javascript" src="EmailAnalyzer.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-1.10.2.min"></script>
+
+
+	</head>
+
+	<body>
+
+		<h1>Communication Tester</h1>
+		<u>You will find tools here</u><br>
+		to analyzean an email address<br>
+		to test an emailAddress address<br>
+		to test mobile text messaging<br>
+
+		<h2>1. Syntax Check and Domain Extraction</h2>
+		
+		<form name="emailForm" method="post" action="#" onSubmit="return checkSyntax()">
+
+			<p>
+				Email Address<br>
+				<input type="text" name="emailAddress" id="emailAddress"><br>
+			  	<input type="submit" name="Submit" value="Check Syntax">
+			</p>
+
+		</form>
+
+			The domain you may want to look up is the following:<br>
+			<div id="domain">
+				Enter an email address above</div>
+			<br><br>
+
+
+     <h2>3. Domain Lookup</h2>
+
+		<form name="mxForm" method="post" action="#" onSubmit="return mx_lookup()">
+
+		    <label for='domainName'>Enter the domain:</label><br>
+			<input type='text' id='domainName' name='domainName'><br><br>
+			<input type='submit' id='Submit' value='Get MX Record'>
+
+		</form>
+
+		Results:<br>
+		<div id='results'>Results</div>
+
+
+	
+
+	 <h2>3. Test Email</h2>
+
+	 	<form>
+		    <label for='emailAddress'>Email Address:</label><br>
+			<input type='text' id='emailAddress' name='emailAddress'><br><br>
+			 <textarea id="message">
+		    Lorem ipsum...
+			</textarea><br>
+			<button onclick="sendEmil(toAddress, textMail); return false">Send</button>
+		</form>
+
+
+	<h3>4. Test SMS</h3>
+
+	You can send an SMS to a mobile phone number<br>
+	with one of the following carriers:
+
+	<form name="smsForm" method="post" action="#" onSubmit="return sendTextMessage()">
+		Enter phone number:
+   		<input type='number' name='phoneNumber' id='phoneNumber'><br>
+   		Enter message:
+   		<input type='text' name='message' id='message'><br>
+   		   		<select name="carrier">
+		   	<option value="1">T-Mobile
+			<option value="2">Virgin Mobile
+			<option value="3">Cingular
+			<option value="4">Sprint
+			<option value="5">Verizon
+			<option value="6">Nextel
+		</select><br>
+
+		<input type="submit" name="Submit" Value="send test SMS">
+	</form>
+
+		</body>
+
+ </html> 
