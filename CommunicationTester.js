@@ -1,4 +1,5 @@
-//SYNTAX CHECK
+//-------------------------------------------------------------------------------------
+//----------------------- EMAIL SYNTAX AND CHARACTER CHECK ----------------------------
 
 function checkCharacters (emailAddress) {
 
@@ -34,7 +35,7 @@ function checkSyntax(){
  }
 
 
-//--------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 //----------------------- MX LLOKUP ---------------------------------------------------
 
 function mx_lookup (domainName) {
@@ -53,6 +54,10 @@ function mx_lookup (domainName) {
         }
     });
 }
+
+
+//-------------------------------------------------------------------------------------
+//----------------------- RECORDS ---------------------------------------------------
 
 
 function dns_record (domainName) {
@@ -92,27 +97,33 @@ function mx_record (domainName) {
     });
 }
 
-
-
-
-
 //------------------------------------------------------------------------------------
 //--------------------------- SEND EMAIL ---------------------------------------------
 
 
-function sendEmail(toAddress, message) {
+function sendTestEmail(toAddress, message) {
 
-    to = toAddress.value
-        msg = message.value
+    emailAddress = toAddress.value
+    msg = message.value
 
-    var link = "mailto:" + to
-             + "&body=" + escape(msg);
+    sendEmail (emailAddress, msg)
 
-    alert("Sending the following email: " + link)
+}
 
-    window.location.href = link;
-    alert ("Email to " + to + " has been sent successfully")
-    return true
+function sendEmail (emailAddress, emailMessage) {
+
+    var alertText = "Sending the email to :" + emailAddress.toString() + ", message: " + emailMessage.toString()
+    alert(alertText)
+
+        $.ajax({
+            type: "POST",
+            url: "sendEmail.php",
+            data: {emailAddress: emailAddress.toString(), message: message.toString()},
+            cache: false,
+            success: function(result){
+                alert ("Email to " + result + " has been sent successfully")
+            }
+        });
 
 }
 
@@ -124,72 +135,60 @@ function sendEmail(toAddress, message) {
 function sendTextMessage() {
 
 	var pN = document.smsForm.phoneNumber
-		var msg = document.smsForm.message
-			var cr = document.smsForm.carrier
+	var msg = document.smsForm.message
+	var cr = document.smsForm.carrier
 
-      var phoneNumber = pN.value
-      var message = msg.value
-      var carrier = cr.value
+  var phoneNumber = pN.value
+  var message = " " + msg.value
+  var carrier = cr.value
 
-
-alert(carrier)
+  var emailAddress
 
 switch (carrier)
 {
-case 'T':
+case 'US-T':
 	// T-Mobile
-	var emailAddress = String(phoneNumber.value) + "@tmomail.net"
+	emailAddress = String(phoneNumber) + "@tmomail.net"
   alert("Sending message over T-Mobile")
   break;
-case 2:
+case 'US-Vi':
 	// Virgin Mobile
-	var emailAddress = String(phoneNumber.value) + "@vmobl.com"
+	emailAddress = String(phoneNumber) + "@vmobl.com"
     alert("Sending message over Virgin Mobile")
   break;
- case 3:
+ case 'US-C':
  	// Cingular
- 	var emailAddress = String(phoneNumber.value) + "@tcingularme.com"
+ 	emailAddress = String(phoneNumber) + "@tcingularme.com"
     alert("Sending message over Cingular")
   break;
- case 4:
+ case 'US-S':
  	// Sprint
- 	var emailAddress = String(phoneNumber.value) + "@messaging.sprintpcs.com"
+ 	emailAddress = String(phoneNumber) + "@messaging.sprintpcs.com"
     alert("Sending message over Sprint")
 	 break;
-  case 5:
+  case 'US-Ve':
  	// Verizon
- 	var emailAddress = String(phoneNumber.value) + "@vtext.com"
+ 	emailAddress = String(phoneNumber) + "@vtext.com"
     alert("Sending message over Verizone")
   break;
- case 6:
+ case 'US-N':
  	// NexTel
- 	var emailAddress = String(phoneNumber.value) + "@messaging.nextel.com"
+ 	emailAddress = String(phoneNumber) + "@messaging.nextel.com"
     alert("Sending message over NexTel")
   break;
    case 'DE-V':
   // Vodafone Germany
-  var emailAddress = String(phoneNumber.value) + "@vodafone-sms.de"
+  emailAddress = phoneNumber.toString() + "@vodafone-sms.de"
     alert("Sending message over Vodafone Germany")
   break;
 default:
   alert("No carrier has been selected")
   break;
-
-  if (sendEmail (emailAddress, message)) {
-
- alert ("I have successfully sent the message to " + emailAddress)
-
- } else {
-
- 	alert("There has been a problem and I could not send the message.")
- }
-
 }
 
+$('#emailAddressSMS').html(emailAddress);
+$('#textSMS').html(message);
+
+  sendEmail (emailAddress, message)
+
 }
-
-
-
- 
-
-
