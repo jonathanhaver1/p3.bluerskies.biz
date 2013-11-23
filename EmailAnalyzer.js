@@ -25,11 +25,11 @@ function checkSyntax(){
 		alert ("This email address is valid")
 	}
 
-	alert (emailString)
-
 	// extract domain
-	var domain = emailString.replace(/.*@/, "")
-	$( "#domain" ).append( $( domain ) );
+	var emailDomain = emailString.replace(/.*@/, "")
+  document.getElementById('domainName').innerHTML=emailDomain
+
+  mx_lookup (emailDomain)
 
  }
 
@@ -37,24 +37,63 @@ function checkSyntax(){
 //--------------------------------------------------------------------------------------
 //----------------------- MX LLOKUP ---------------------------------------------------
 
-function mx_lookup () {
+function mx_lookup (domainName) {
 
-  var domainName = document.mxForm.domainName
+  alert(domainName)
 
-  alert (domainName.value)
-	
-    $.ajax({
-        type: 'post',
-        url: 'lookup_dns.php',
-        success: function(response) { 
+   $.ajax({
+        type: "POST",
+        url: "lookup_dns.php",
+        data: {domainString: domainName.toString()}, 
+        cache: false,
 
-            alert(response);
-        },
-        data: {
-            domain: domainName.value,
-        },
+        success: function(response){
+            $('#mxRecordExists').html(response);
+
+        }
     });
-};
+}
+
+
+function dns_record (domainName) {
+
+    dn = domainName.value
+    alert("Looking up the DNS record for "+ dn)
+
+
+   $.ajax({
+        type: "POST",
+        url: "dns_record_lookup.php",
+        data: {domainString: dn}, 
+        cache: false,
+
+        success: function(response){
+            $('#record').html(response);
+
+        }
+    });
+}
+
+function mx_record (domainName) {
+
+    dn = domainName.value
+    alert("Looking up the MX Record for " + dn)
+
+   $.ajax({
+        type: "POST",
+        url: "mx_record_lookup.php",
+        data: {domainString: dn}, 
+        cache: false,
+
+        success: function(response){
+            $('#record').html(response);
+
+        }
+    });
+}
+
+
+
 
 
 //------------------------------------------------------------------------------------
