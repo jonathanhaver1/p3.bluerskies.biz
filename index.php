@@ -6,6 +6,8 @@
 
 	 	<link rel="stylesheet" type="text/css" href="generalStyle.css">
 		<script type="text/javascript" src="CommunicationTester.js"></script>
+		<script type="text/javascript" src="print_r.js"></script>
+		<script type="text/javascript" src="echo.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 

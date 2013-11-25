@@ -49,7 +49,7 @@ function mx_lookup (domainName) {
         cache: false,
 
         success: function(response){
-            $('#mxRecordExists').html(response);
+            $('#mxRecordExists').append(print_r(response));
 
         }
     });
@@ -73,8 +73,10 @@ function dns_record (domainName) {
         cache: false,
 
         success: function(response){
-            $('#record').html(response);
-
+          for (i=0;i<response.length;i++)
+          {
+            document.write(response[i] + "<br >");
+          }
         }
     });
 }
@@ -91,8 +93,10 @@ function mx_record (domainName) {
         cache: false,
 
         success: function(response){
-            $('#record').html(response);
-
+          for (i=0;i<response.length;i++)
+          {
+            document.write(response[i] + "<br >");
+          }
         }
     });
 }
