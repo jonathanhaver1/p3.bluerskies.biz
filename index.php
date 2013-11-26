@@ -45,11 +45,11 @@
 		<form>
 			Domain:<br>
 			<input type='text' id='emailDomain' name='emailDomain'><br><br>
-			<input type="radio" name="records" onclick="dns_record(emailDomain)" value="DNS Records">DNS Records<br>
-			<input type="radio" name="records" onclick="mx_record(emailDomain)" value="MX Record">MX Records<br><br>
+			<input type="radio" name="records" onclick="mx_record(emailDomain)" value="MX Record">MX Records<br>
+			<input type="radio" name="records" onclick="dns_record(emailDomain)" value="DNS Records">DNS Records<br><br>
 		</form>
 
-		<span style ="color: navy; font:bold 16px Georgia, serif;">= RECORD =</span><br> <div id = "record"></div><br>
+		<span style ="color: navy; font:bold 16px Georgia, serif;">= RECORD =</span><br><div id = "record"></div><br>
 
 
 	 <h3>Send Test Email</h3>

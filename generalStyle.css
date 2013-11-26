@@ -29,3 +29,12 @@ h3 {
 #description {
  max-width: 30px;
  } 
+
+ #record {
+ 	font-color: navy;
+ 	font-size: x-small;
+ 	border: 2px solid black;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	width: 80%;
+ }

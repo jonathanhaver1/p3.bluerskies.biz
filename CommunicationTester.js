@@ -40,7 +40,7 @@ function checkSyntax(){
 
 function mx_lookup (domainName) {
 
-  alert(domainName)
+  alert("The domain name is "+ domainName + "\n\nI will now check the DNS records for this domain");
 
    $.ajax({
         type: "POST",
@@ -49,7 +49,7 @@ function mx_lookup (domainName) {
         cache: false,
 
         success: function(response){
-            $('#mxRecordExists').append(print_r(response));
+            $('#mxRecordExists').html(response);
 
         }
     });
@@ -73,10 +73,12 @@ function dns_record (domainName) {
         cache: false,
 
         success: function(response){
-          for (i=0;i<response.length;i++)
-          {
-            document.write(response[i] + "<br >");
-          }
+
+          var stringResponse = JSON.stringify(response,null,0);
+
+          parseResponse = beautifyRecords(stringResponse);
+
+          $('#record').html(parseResponse);
         }
     });
 }
@@ -93,10 +95,12 @@ function mx_record (domainName) {
         cache: false,
 
         success: function(response){
-          for (i=0;i<response.length;i++)
-          {
-            document.write(response[i] + "<br >");
-          }
+
+          var stringResponse = JSON.stringify(response,null,0);
+
+          parseResponse = beautifyRecords(stringResponse);
+
+          $('#record').html(parseResponse);
         }
     });
 }
@@ -194,5 +198,23 @@ $('#emailAddressSMS').html(emailAddress);
 $('#textSMS').html(message);
 
   sendEmail (emailAddress, message)
+
+}
+
+//---------------------------------------------------------------
+//--------------- beautify records ------------------------------
+
+
+function beautifyRecords (stringResponse) {
+
+  stringResponse1 = stringResponse.replace(/\"/g, "");
+  stringResponse1a = stringResponse1.replace(/,/g, "");
+  stringResponse1b = stringResponse1a.replace(/\\/g, "");
+  stringResponse2 = stringResponse1b.replace(/\[/g, "<p>");
+  stringResponse3 = stringResponse2.replace(/\]/g, "</p>");
+  stringResponse4 = stringResponse3.replace(/\{/g, "<br>");
+  stringResponse5 = stringResponse4.replace(/\}/g, "</br>");
+
+  return stringResponse5;
 
 }
