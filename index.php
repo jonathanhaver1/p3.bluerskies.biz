@@ -40,6 +40,11 @@
 		<span style ="color: navy; font:bold 16px Georgia, serif;">= DOMAIN =</span><br><div id = "domainName"></div><br>
 		<span style ="color: navy; font:bold 16px Georgia, serif;">= IS THERE A DNS RECORD? =</span><br> <div id = "mxRecordExists"></div><br>
 
+		A mail exchanger record (MX record) is record in the Domain Name System (DNS)<br>
+		that specifies the mail server responsible for accepting (SMTP) email messages<br>
+		on behalf of a recipient's domain.<br>
+		A domain may exist but still have a null MX record because it is not intended<br>
+		to receive mail.<br><br>
 		If you want to see the MX or DNS records click one of the following:<br><br>
 
 		<form>
@@ -49,8 +54,11 @@
 			<input type="radio" name="records" onclick="dns_record(emailDomain)" value="DNS Records">DNS Records<br><br>
 		</form>
 
-		<span style ="color: navy; font:bold 16px Georgia, serif;">= RECORD =</span><br><div id = "record"></div><br>
-
+		<span style ="color: navy; font:bold 16px Georgia, serif;">= RECORD =</span><br><br>
+		<div id = "record"><br>
+			<u>NO RECORDS TO DISPLAY</u><br>
+			Please enter domain and select one of the options<br><br>
+		</div>
 
 	 <h3>Send Test Email</h3>
 
@@ -62,7 +70,6 @@
 			</textarea><br><br>
 			<button type="button" name="Button" value="Send Email" onclick="sendEmail(toAddress, message)">Send Email</button>
 		</form>
-
 
 	<h2>Mobile Text Message (SMS)</h2>
 

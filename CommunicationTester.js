@@ -207,14 +207,15 @@ $('#textSMS').html(message);
 
 function beautifyRecords (stringResponse) {
 
-  stringResponse1 = stringResponse.replace(/\"/g, "");
-  stringResponse1a = stringResponse1.replace(/,/g, "");
-  stringResponse1b = stringResponse1a.replace(/\\/g, "");
-  stringResponse2 = stringResponse1b.replace(/\[/g, "<p>");
-  stringResponse3 = stringResponse2.replace(/\]/g, "</p>");
-  stringResponse4 = stringResponse3.replace(/\{/g, "<br>");
-  stringResponse5 = stringResponse4.replace(/\}/g, "</br>");
+  stringResponse1 = stringResponse.replace(/\"/g, "")
+  stringResponse1a = stringResponse1.replace(/,/g, "")
+  stringResponse1b = stringResponse1a.replace(/\\/g, "")
+  stringResponse2 = stringResponse1b.replace(/\[/g, "")
+  stringResponse3 = stringResponse2.replace(/\]/g, "")
+  stringResponse4 = stringResponse3.replace(/\{/g, "<br>")
+  stringResponse5 = stringResponse4.replace(/\}/g, "</br>")
+  stringResponse6 = stringResponse5.replace(/host/g, "<span style ='text-decoration: underline'>host</span>")
 
-  return stringResponse5;
+  return stringResponse6 + "<br>"
 
 }
