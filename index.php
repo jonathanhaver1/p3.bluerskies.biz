@@ -17,7 +17,7 @@
 	<body>
 
 		<h1>Communication Tester</h1>
-		<i>Test your email and your mobile messaging</i><br>
+		<i>Test email and text messaging</i><br>
 
 		<h2>Electronic Mail (email)</h2>
 
@@ -33,7 +33,7 @@
 		<form name="emailForm" method="post" action="#"><br>
 
 				Email Address<br>
-				<input type="text" name="emailAddress" id="emailAddress"><br><br>
+				<input type="text" name="emailAddress" id="emailAddress" max-length='100'><br><br>
 			  	<input type="button" name="Button" value="Check Address" onClick ="checkSyntax()">
 			  <br><br>
 		</form>
@@ -65,11 +65,10 @@
 
 	 	<form>
 		    <label for='toAddress'>Email Address:</label><br>
-			<input type='text' id='toAddress' name='toAdress'><br><br>
-			<textarea id="message">
-			Test Message
+			<input type='text' id='toAddress' name='toAdress' max-length='100'><br><br>
+			<textarea id="message">Enter your test message
 			</textarea><br><br>
-			<button type="button" name="Button" value="Send Email" onclick="sendEmail(toAddress, message)">Send Email</button>
+			<button type="button" name="Button" value="Send Email" onclick="testEmail(toAddress, message)">Send Email</button>
 		</form>
 
 	<h2>Mobile Text Message (SMS)</h2>
@@ -77,16 +76,16 @@
 	<h3>Test Message</h3>
 
 	You can send an SMS to a mobile phone number<br>
-	with one of the following carriers:<br><br>
-
-	<span style ="color: navy; font:bold 16px Georgia, serif;">Email Address</span><br><div id = "emailAddressSMS">- here you will see the calculated email address -</div><br>
-	<span style ="color: navy; font:bold 16px Georgia, serif;">Text</span><br><div id = "textSMS">- here you will see the text message -</div><br><br>
+	with one of the following carriers
+	if you have <u>activated</u> this service with your carrier<br><br>
 
 	<form name="smsForm" method="post" action="#" onSubmit="return sendTextMessage()">
-		Phone Number<br>
-   		<input type='number' name='phoneNumber' id='phoneNumber'><br><br>
+		Phone Number <br>
+		(max. 10 digits)<br>
+   		<input type='number' name='phoneNumber' id='phoneNumber' max='9999999999'><br><br>
    		Test Message<br>
-   		<input type='text' name='message' id='message'><br><br>
+   		(max. length 120 characters)<br>
+   		<input type='text' name='message' id='message' max-length='120'><br><br>
    		Carrier<br>
    		<select name="carrier" type= "text">
 		   	<option value = "US-T">T-Mobile

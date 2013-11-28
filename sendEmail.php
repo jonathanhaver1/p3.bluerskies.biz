@@ -1,7 +1,7 @@
 <?php
 
-    $toAddress = $_POST['emailAddress'];
-    $message = $_POST['message'];
+    $toAddress = $_POST['emailAddressSend'];
+    $message = $_POST['messageSend'];
 
 	//send email
     mail($toAddress, "test", $message);

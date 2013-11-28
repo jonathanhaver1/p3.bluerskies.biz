@@ -137,31 +137,36 @@ function mx_record (domainName) {
 //------------------------------------------------------------------------------------
 //--------------------------- SEND EMAIL ---------------------------------------------
 
+// convert to string value
 
-function sendTestEmail(toAddress, message) {
+function testEmail(emailAddress, emailMessage) {
 
-    emailAddress = toAddress.value
-    msg = message.value
+  var emailAddressString = emailAddress.value.toString()
+  var emailMessageString = emailMessage.value.toString()
 
-    sendEmail (emailAddress, msg)
-
+  sendTestEmail(emailAddressString, emailMessageString) 
 }
 
-function sendEmail (emailAddress, emailMessage) {
+// email sender
 
-    var alertText = "Sending the email to :" + emailAddress.toString() + ", message: " + emailMessage.toString()
+function sendTestEmail(emailAddressString, emailMessageString) {
+
+  if (checkCharactersEmailAddress (emailAddressString)) {
+    var alertText = "Sending the email to :" + emailAddressString + ", message: " + emailMessageString
     alert(alertText)
 
-        $.ajax({
-            type: "POST",
-            url: "sendEmail.php",
-            data: {emailAddress: emailAddress.toString(), message: message.toString()},
-            cache: false,
-            success: function(result){
-                alert ("Email to " + result + " has been sent successfully")
-            }
-        });
-
+    $.ajax({
+    type: "POST",
+      url: "sendEmail.php",
+      data: {emailAddressSend: emailAddressString, messageSend: emailMessageString},
+      cache: false,
+      success: function(toAddress){
+      alert ("Email to " + toAddress.toString() + " has been sent successfully")
+      }
+    });
+  } else {
+    alert ("This email address is not valid\nPlease enter it again")
+  }
 }
 
 
@@ -223,15 +228,12 @@ default:
   break;
 }
 
-$('#emailAddressSMS').html(emailAddress);
-$('#textSMS').html(message);
-
-  sendEmail (emailAddress, message)
+  sendTestEmail (emailAddress, message)
 
 }
 
-//---------------------------------------------------------------
-//--------------- beautify records ------------------------------
+//----------------------------------------------------------------------
+//--------------- beautify DNS and MX records --------------------------
 
 
 function beautifyRecords (stringResponse) {
