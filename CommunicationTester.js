@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------------------------
 //----------------------- EMAIL SYNTAX AND CHARACTER CHECK ----------------------------
 
-function checkCharacters (emailAddress) {
+function checkCharactersEmailAddress (emailAddress) {
 
     characterTest = /^[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*@[a-z\d]([a-z\d-]*[a-z\d])?(\.[a-z\d]([a-z\d-]*[a-z\d])?)*\.[a-z]{2,6}$/i
     lengthTest = /^(.{1,64})@(.{4,255})$/
@@ -20,7 +20,7 @@ function checkSyntax(){
 	if (email.value==null){
 		alert ("No email address entered")
 	}
-	if (checkCharacters(email.value)==false){
+	if (checkCharactersEmailAddress(email.value)==false){
     	alert ("This email address is not valid")
 	} else {
 		alert ("This email address is valid")
@@ -34,6 +34,27 @@ function checkSyntax(){
 
  }
 
+//-------------------------------------------------------------------------------------
+//----------------------- DOMAIN NAME SYNTAX AND CHARACTER CHECK  ---------------------
+
+
+function checkDomainName (domainName) {
+
+  var regExp = new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/) 
+  domainName.match(regExp)
+
+  if (domainName==null){
+    alert ("No domain name entered")
+    return false
+  }
+  if (!domainName.match(regExp)){
+    alert ("This domain name is not valid\n\nPlease enter it again")
+    return false
+  } else {
+    return true
+  }
+
+}
 
 //-------------------------------------------------------------------------------------
 //----------------------- MX LLOKUP ---------------------------------------------------
@@ -42,67 +63,75 @@ function mx_lookup (domainName) {
 
   alert("The domain name is "+ domainName + "\n\nI will now check the DNS records for this domain");
 
-   $.ajax({
-        type: "POST",
-        url: "lookup_dns.php",
-        data: {domainString: domainName.toString()}, 
-        cache: false,
+  $.ajax({
+    type: "POST",
+    url: "lookup_dns.php",
+    data: {domainString: domainName.toString()}, 
+    cache: false,
 
-        success: function(response){
-            $('#mxRecordExists').html(response);
+    success: function(response){
+      $('#mxRecordExists').html(response);
 
-        }
+  }
     });
 }
 
 
-//-------------------------------------------------------------------------------------
-//----------------------- RECORDS ---------------------------------------------------
+//------------------------------------------------------------------------------------
+//----------------------- RECORDS ----------------------------------------------------
 
 
 function dns_record (domainName) {
 
-    dn = domainName.value
+  dn = domainName.value
+
+  if (checkDomainName (dn)) {
+
     alert("Looking up the DNS record for "+ dn)
 
 
-   $.ajax({
-        type: "POST",
-        url: "dns_record_lookup.php",
-        data: {domainString: dn}, 
-        cache: false,
+    $.ajax({
+      type: "POST",
+      url: "dns_record_lookup.php",
+      data: {domainString: dn}, 
+      cache: false,
 
-        success: function(response){
+      success: function(response){
 
-          var stringResponse = JSON.stringify(response,null,0);
+        var stringResponse = JSON.stringify(response,null,0);
 
-          parseResponse = beautifyRecords(stringResponse);
+        parseResponse = beautifyRecords(stringResponse);
 
-          $('#record').html(parseResponse);
-        }
+        $('#record').html(parseResponse);
+      }
     });
+  }
 }
 
 function mx_record (domainName) {
 
-    dn = domainName.value
+  dn = domainName.value
+
+  if (checkDomainName (dn)) {
+
     alert("Looking up the MX Record for " + dn)
 
-   $.ajax({
-        type: "POST",
-        url: "mx_record_lookup.php",
-        data: {domainString: dn}, 
-        cache: false,
+    $.ajax({
+      type: "POST",
+      url: "mx_record_lookup.php",
+      data: {domainString: dn}, 
+      cache: false,
 
-        success: function(response){
+      success: function(response){
 
-          var stringResponse = JSON.stringify(response,null,0);
+        var stringResponse = JSON.stringify(response,null,0);
 
-          parseResponse = beautifyRecords(stringResponse);
+        parseResponse = beautifyRecords(stringResponse);
 
-          $('#record').html(parseResponse);
-        }
+        $('#record').html(parseResponse);
+      }
     });
+  }
 }
 
 //------------------------------------------------------------------------------------

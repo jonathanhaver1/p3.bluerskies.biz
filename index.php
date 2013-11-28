@@ -3,13 +3,14 @@
 
 	 <head>
 
+	 	<meta name="description" content="Test Email and Mobile Text Messaging">
+		<meta name="keywords" content="email,dns,mx,sms,test">
+		<meta name="author" content="Christian Jonathan Haverkampf">
 
 	 	<link rel="stylesheet" type="text/css" href="generalStyle.css">
-		<script type="text/javascript" src="CommunicationTester.js"></script>
-		<script type="text/javascript" src="print_r.js"></script>
-		<script type="text/javascript" src="echo.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="CommunicationTester.js"></script>
 
 	</head>
 
@@ -33,18 +34,18 @@
 
 				Email Address<br>
 				<input type="text" name="emailAddress" id="emailAddress"><br><br>
-			  	<input type="button" name="Button" value="Check Syntax" onClick ="checkSyntax()">
+			  	<input type="button" name="Button" value="Check Address" onClick ="checkSyntax()">
 			  <br><br>
 		</form>
 
-		<span style ="color: navy; font:bold 16px Georgia, serif;">= DOMAIN =</span><br><div id = "domainName"></div><br>
-		<span style ="color: navy; font:bold 16px Georgia, serif;">= IS THERE A DNS RECORD? =</span><br> <div id = "mxRecordExists"></div><br>
+		<span style ="color: navy; font:bold 16px Georgia, serif;">= DOMAIN =</span><br><div id = "domainName">Please enter an email address<br>and click 'Check Address'</div><br>
+		<span style ="color: navy; font:bold 16px Georgia, serif;">= IS THERE A DNS RECORD? =</span><br> <div id = "mxRecordExists">Please enter an email address<br>and click 'Check Address'</div><br>
 
-		A mail exchanger record (MX record) is record in the Domain Name System (DNS)<br>
-		that specifies the mail server responsible for accepting (SMTP) email messages<br>
-		on behalf of a recipient's domain.<br>
-		A domain may exist but still have a null MX record because it is not intended<br>
-		to receive mail.<br><br>
+		The <u>DNS</u> record shows if the domain name can be resolved ('exists').<br><br>
+		The mail exchange (<u>MX</u>) record within the DNS specifies the mail server<br>
+		responsible for accepting (SMTP) email messages on behalf of a recipient's domain.<br>
+		A domain may exist but still have a null MX record<br>
+		if it is not intended to receive mail.<br><br>
 		If you want to see the MX or DNS records click one of the following:<br><br>
 
 		<form>
@@ -79,7 +80,7 @@
 	with one of the following carriers:<br><br>
 
 	<span style ="color: navy; font:bold 16px Georgia, serif;">Email Address</span><br><div id = "emailAddressSMS">- here you will see the calculated email address -</div><br>
-	<span style ="color: navy; font:bold 16px Georgia, serif;">Text</span><br><div id = "textSMS">- here you will see your message -</div><br><br>
+	<span style ="color: navy; font:bold 16px Georgia, serif;">Text</span><br><div id = "textSMS">- here you will see the text message -</div><br><br>
 
 	<form name="smsForm" method="post" action="#" onSubmit="return sendTextMessage()">
 		Phone Number<br>
