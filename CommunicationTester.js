@@ -4,35 +4,46 @@
 function checkCharactersEmailAddress (emailAddress) {
 
     characterTest = /^[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*@[a-z\d]([a-z\d-]*[a-z\d])?(\.[a-z\d]([a-z\d-]*[a-z\d])?)*\.[a-z]{2,6}$/i
+
     lengthTest = /^(.{1,64})@(.{4,255})$/
+
     if (characterTest.test(emailAddress) && lengthTest.test(emailAddress)) {
+
     	return true
+
     } else {
+
     	return false
+
     }
 }
 
 function checkSyntax(){
-	var email = document.emailForm.emailAddress
-	var emailString = email.value
+
+  var email = document.emailForm.emailAddress
+  var emailString = email.value
 
 
-	if (email.value==null){
-		alert ("No email address entered")
-	}
-	if (checkCharactersEmailAddress(email.value)==false){
-    	alert ("This email address is not valid")
-	} else {
-		alert ("This email address is valid")
-	}
+  if (email.value == null) {
 
-	// extract domain
-	var emailDomain = emailString.replace(/.*@/, "")
-  document.getElementById('domainName').innerHTML=emailDomain
+    alert ("No email address entered")
 
-  mx_lookup (emailDomain)
+  } else if (checkCharactersEmailAddress(email.value) == false) {
 
- }
+    alert ("This email address is not valid")
+
+  } else {
+
+    alert ("This email address is valid")
+
+    // extract domain
+    var emailDomain = emailString.replace(/.*@/, "")
+    document.getElementById('domainName').innerHTML=emailDomain
+
+    mx_lookup (emailDomain)
+
+  }
+}
 
 //-------------------------------------------------------------------------------------
 //----------------------- DOMAIN NAME SYNTAX AND CHARACTER CHECK  ---------------------
@@ -44,14 +55,19 @@ function checkDomainName (domainName) {
   domainName.match(regExp)
 
   if (domainName==null){
+
     alert ("No domain name entered")
     return false
-  }
-  if (!domainName.match(regExp)){
+
+  } else if (!domainName.match(regExp)) {
+
     alert ("This domain name is not valid\n\nPlease enter it again")
     return false
+
   } else {
+
     return true
+    
   }
 
 }
