@@ -1,3 +1,8 @@
+/*
+* The JavaScript and Jquery functions
+* to support the Communication Tester
+*/
+
 //-------------------------------------------------------------------------------------
 //----------------------- EMAIL SYNTAX AND CHARACTER CHECK ----------------------------
 
