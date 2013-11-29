@@ -50,9 +50,11 @@
 
 		<form>
 			Domain:<br>
-			<input type='text' id='emailDomain' name='emailDomain'><br><br>
-			<input type="radio" name="records" onclick="mx_record(emailDomain)" value="MX Record">MX Records<br>
-			<input type="radio" name="records" onclick="dns_record(emailDomain)" value="DNS Records">DNS Records<br><br>
+			<input type ='text' id='emailDomain' name='emailDomain'><br><br>
+			<input type = "radio" name="records" onclick="mx_record(emailDomain)" value="MX Record">MX Records<br>
+			<input type = "radio" name="records" onclick="dns_record(emailDomain)" value="DNS Records">DNS Records<br><br>
+			<input type = "radio" name="refreshPage" onclick= "location.reload()" value="clear page">clear page<br>
+			<br>
 		</form>
 
 		<span style ="color: navy; font:bold 16px Georgia, serif;">= RECORD =</span><br><br>
@@ -64,11 +66,11 @@
 	 <h3>Send Test Email</h3>
 
 	 	<form>
-		    <label for='toAddress'>Email Address:</label><br>
-			<input type='text' id='toAddress' name='toAdress' max-length='100'><br><br>
-			<textarea id="message">Enter your test message
+		    <label for = 'toAddress'>Email Address:</label><br>
+			<input type ='text' id='toAddress' name='toAdress' max-length='100'><br><br>
+			<textarea id = "message">Enter your test message
 			</textarea><br><br>
-			<button type="button" name="Button" value="Send Email" onclick="testEmail(toAddress, message)">Send Email</button>
+			<button type = "button" name="Button" value="Send Email" onclick="testEmail(toAddress, message)">Send Email</button>
 		</form>
 
 	<h2>Mobile Text Message (SMS)</h2>

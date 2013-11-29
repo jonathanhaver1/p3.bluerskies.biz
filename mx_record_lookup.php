@@ -2,6 +2,14 @@
 
 $resultDNS = dns_get_record($_POST['domainString'],DNS_MX);
 
-echo json_encode($resultDNS);
+if ($resultDNS == null) {
+
+	print ("<br>No Record Found<br>");
+
+} else {
+
+	echo json_encode ($resultDNS);
+
+}
 
 ?>
